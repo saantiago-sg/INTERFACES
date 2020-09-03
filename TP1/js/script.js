@@ -292,7 +292,7 @@ a) Dibujar la imagen dentro del canvas
     
     let imageData = ctx.getImageData(0, 0, imageScaleWidth, imageScaleHeight);
     // aca edito el imageData
-    /*for(let x = 0; x < imageData.width; x++){
+    /*for(let x = 0; x < imageData.width; x++){     esto es de pixeles par
         for(let y = 0; y < imageData.height; y++){
             if(x % 2 == 0){
                 let i = (x + imageData.width * y) * 4;
