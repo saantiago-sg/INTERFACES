@@ -24,6 +24,8 @@
     </canvas>
     <input type="color" id="colorInp" oninput="colorInp(this.value);">
     <input type="range" id="grosorPen" oninput="grosorPen(this.value);" min="1" max="30" value="1">
+    <button onclick="document.querySelector('.inputImage').click()">Seleccionar foto</button>
+    <input class="inputImage" type="file" accept="image/*" style="display: none;">
     
     <img src="img/icoDelete.png" id="btnDelete" width="50px" height="50px">
 

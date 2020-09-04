@@ -57,3 +57,39 @@ function deleteDraw(){
 let btnDel = document.querySelector('#btnDelete').addEventListener('click', deleteDraw);
 
 //  AGREGAR IMAGEN
+
+let inputImage = document.querySelector(".inputImage");
+
+//canvas.addEventListener('click', colorGrey);
+    inputImage.onchange = e => {
+
+        let file = e.target.files[0];
+
+        let reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = readerEvent => {
+            let content = readerEvent.target.result;
+
+            image = new Image();
+            image.src = content;
+    
+
+    image.onload = function(){
+    canvas.width = this.width;
+    canvas.height = this.height;
+
+    let imageAspectRatio = (1.0 * this.height) / this.width;
+    let imageScaleWidth = canvas.width;
+    let imageScaleHeight = canvas.width * imageAspectRatio;
+
+    ctx.drawImage(this, 0, 0, imageScaleWidth, imageScaleHeight);
+
+    
+    let imageData = ctx.getImageData(0, 0, imageScaleWidth, imageScaleHeight);
+    
+    ctx.putImageData(imageData, 0, 0);
+        }
+    }
+}
