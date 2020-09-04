@@ -93,3 +93,40 @@ let inputImage = document.querySelector(".inputImage");
         }
     }
 }
+
+//FILTROS DE COLORES
+
+function colorNegativo(){
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);    //obtengo los datos de la imagen, altura ancho y pos
+    let pixeles = imageData.data;
+    
+    for (var i = 0; i < pixeles.length; i += 4) { // recorre uno a uno los pixeles de la imagen y cambia el color por el complementario
+
+        pixeles[i] = 255 - pixeles[i]; // rojo
+        pixeles[i + 1] = 255 - pixeles[i + 1]; // verde
+        pixeles[i + 2] = 255 - pixeles[i + 2]; // azul
+      }
+      ctx.putImageData(imageData, 0, 0);
+      }
+let btnNegativo = document.querySelector("#btnNegativo").addEventListener("click", colorNegativo);
+
+
+function colorBrillo(){
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);    //obtengo los datos de la imagen, altura ancho y pos
+    let pixeles = imageData.data;
+   
+    for (var i = 0; i < pixeles.length; i += 4) { // recorre uno a uno los pixeles de la imagen y cambia el color por el complementario
+
+        pixeles[i] = pixeles[i]; // rojo
+        pixeles[i + 1] = pixeles[i + 1]; // verde
+        pixeles[i + 2] = pixeles[i + 2];  // azul
+        
+    }
+      ctx.putImageData(imageData, 0, 0);
+      }
+    
+    
+
+
+let btnBrillo = document.querySelector("#btnBrillo").addEventListener("click", colorBrillo);
