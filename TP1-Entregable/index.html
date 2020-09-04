@@ -1,22 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <title>TP 1 - GAUNA</title>
-</head>
-<body>
+  </head>
+  <body>
     
     <h1>EJERCICIO 1</h1>
-    <p>Barra de herramientas con al menos lápiz y goma de borrar y su correspondiente funcionalidad.</p>
+    <p>Desarrollar una aplicación web similar al clásico Paint de Windows que provea de la siguiente funcionalidad:</p>
+    <p>1. Barra de herramientas con al menos lápiz y goma de borrar y su correspondiente funcionalidad.</p>
+    <p> 2. Permitir iniciar con un lienzo en blanco, o partir de una imagen que será cargada desde disco (Usar un diálogo
+        para elegir la imagen)</p>  
+    <p> 3. Aplicar al menos cuatro filtros por pixeles a la imagen actual, por ejemplo: negativo, brillo, binarización y sepia.</p>
+    <p> 4. Aplicar al menos dos de los siguientes filtros a la imagen: Saturación, Suavizado, Detección de Bordes, Blur.   Nota: Este ejercicio es Necesario para Promoción.</p>  
+
+    <p>  5. Permitir guardar en disco la imagen, o descartar la imagen y comenzar con un lienzo vacío.</p>
     
     <canvas id="canvasPaint" width="400" height="400">
     </canvas>
     <input type="color" id="colorInp" oninput="colorInp(this.value);">
-    <input type="range" id="grosorPen" oninput="grosorPen(this.value);" min="1" max="5" value="1">
-
+    <input type="range" id="grosorPen" oninput="grosorPen(this.value);" min="1" max="30" value="1">
     
-</body>
+    <img src="img/icoDelete.png" id="btnDelete" width="50px" height="50px">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
 <script src="js/scriptcode.js"></script>
 </html>
+

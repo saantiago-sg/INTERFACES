@@ -7,6 +7,8 @@ let dibujando = false;
 let color = 'black';
 let grosorP = 1;
 
+// PAINT(DIBUJAR - BORRAR)
+
 function colorInp(c){   // cambio el color que elije el usuario por parametro
 color  = c;
 }
@@ -38,7 +40,7 @@ canvas.addEventListener('mouseup', function(e){   // esta funcion capta cuando e
     }
 });
 
-function dibujar(x1, y1, x2, y2){
+function dibujar(x1, y1, x2, y2){   //paso los parametros de la posiciones
     ctx.beginPath();    // abro el path
     ctx.strokeStyle = color;
     ctx.lineWidth = grosorP;
@@ -47,3 +49,11 @@ function dibujar(x1, y1, x2, y2){
     ctx.stroke();
     ctx.closePath(); // cierro el path
 }
+
+function deleteDraw(){
+    color = 'white';
+    //clase para icono borrar
+}
+let btnDel = document.querySelector('#btnDelete').addEventListener('click', deleteDraw);
+
+//  AGREGAR IMAGEN

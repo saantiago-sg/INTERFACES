@@ -1,3 +1,4 @@
 #canvasPaint{
     border: 2px solid black;
+    cursor:url('../img/lapiz.png'),auto;
 }
