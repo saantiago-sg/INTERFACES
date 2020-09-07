@@ -117,16 +117,63 @@ function colorBrillo(){
     let pixeles = imageData.data;
    
     for (var i = 0; i < pixeles.length; i += 4) { // recorre uno a uno los pixeles de la imagen y cambia el color por el complementario
-
-        pixeles[i] = pixeles[i]; // rojo
-        pixeles[i + 1] = pixeles[i + 1]; // verde
-        pixeles[i + 2] = pixeles[i + 2];  // azul
         
+        pixeles[i] = (255/3) + pixeles[i]; // rojo
+        pixeles[i + 1] = (255/3) + pixeles[i + 1]; // verde
+        pixeles[i + 2] = (255/3) + pixeles[i + 2]; // azul   
     }
-      ctx.putImageData(imageData, 0, 0);
+ctx.putImageData(imageData, 0, 0); 
+}
+let btnBrillo = document.querySelector("#btnBrillo").addEventListener("click", colorBrillo); 
+
+function colorGris(){
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let pixeles = imageData.data;
+
+    for (let i = 0; i < pixeles.length; i += 4) {
+        let sum = pixeles[i] + pixeles[i+1] + pixeles[i+2];
+        let promedio = parseInt(sum/3);
+        pixeles[i] = promedio;
+        pixeles[i+1] = promedio;
+        pixeles[i+2] = promedio;
       }
-    
-    
+      //imageData.data = pixeles;
+      ctx.putImageData(imageData, 0, 0);
+}
+let btnGris = document.querySelector("#btnGris").addEventListener("click", colorGris);
+
+function colorSepia(){
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let pixeles = imageData.data;
+    let numPixels = imageData.width * imageData.height;
+    for ( var i = 0; i < numPixels; i++ ) {
+        var r = pixeles[ i * 4 ];
+        var g = pixeles[ i * 4 + 1 ];
+        var b = pixeles[ i * 4 + 2 ];
+ 
+        pixeles[ i * 4 ] = 255 - r;
+        pixeles[ i * 4 + 1 ] = 255 - g;
+        pixeles[ i * 4 + 2 ] = 255 - b;
+ 
+        pixeles[ i * 4 ] = ( r *.393 ) + ( g *.769 ) + ( b * .189 );
+        pixeles[ i * 4 + 1 ] = ( r * .349 ) + ( g *.686 ) + ( b * .168 );
+        pixeles[ i * 4 + 2 ] = ( r * .272 ) + ( g *.534 ) + ( b * .131 );
+    }
+    ctx.putImageData(imageData, 0, 0);
+}
+let btnSepia = document.querySelector("#btnSepia").addEventListener("click", colorSepia);
 
 
-let btnBrillo = document.querySelector("#btnBrillo").addEventListener("click", colorBrillo);
+function guardarImage(){
+let link = document.createElement('a');
+let url = canvas.toDataURL();
+let filename = 'imagecanvas.jpg';
+link.setAttribute( 'href', url );
+    link.setAttribute( 'download', filename );
+    link.style.visibility = 'hidden';
+    window.document.body.appendChild( link );
+    link.click();
+    window.document.body.removeChild( link );
+}
+let btnGuardar = document.querySelector("#btnGuardar").addEventListener("click", guardarImage);
