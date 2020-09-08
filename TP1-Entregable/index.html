@@ -8,43 +8,38 @@
 
     <title>TP 1 - GAUNA</title>
   </head>
-  <body>
-    
-    <h1>EJERCICIO 1</h1>
-    <p>Desarrollar una aplicación web similar al clásico Paint de Windows que provea de la siguiente funcionalidad:</p>
-    <p>1. Barra de herramientas con al menos lápiz y goma de borrar y su correspondiente funcionalidad.</p>
-    <p> 2. Permitir iniciar con un lienzo en blanco, o partir de una imagen que será cargada desde disco (Usar un diálogo
-        para elegir la imagen)</p>  
-    <p> 3. Aplicar al menos cuatro filtros por pixeles a la imagen actual, por ejemplo: negativo, brillo, binarización y sepia.</p>
-    <p> 4. Aplicar al menos dos de los siguientes filtros a la imagen: Saturación, Suavizado, Detección de Bordes, Blur.   Nota: Este ejercicio es Necesario para Promoción.</p>  
-
-    <p>  5. Permitir guardar en disco la imagen, o descartar la imagen y comenzar con un lienzo vacío.</p>
-    
-
-    <canvas id="canvasPaint" width="400" height="400">
-    </canvas>
-    <input type="color" id="colorInp" oninput="colorInp(this.value);">
-    <input type="range" id="grosorPen" oninput="grosorPen(this.value);" min="1" max="15" value="1">
-
-    <img src="img/icoDelete.png" id="btnDelete" width="50px" height="50px">
-    <img src="img/icoAddImage.png" width="50px" height="50px" onclick="document.querySelector('.inputImage').click()">
-    <input class="inputImage" type="file" accept="image/*" style="display: none;">
+  <body> 
 
     <div class="container-fluid">
-      <button type="button" id="btnNegativo" class="btn btn-dark"> NEGATIVO </button>
-      <button type="button" id="btnBrillo" class="btn btn-dark"> BRILLO </button>
-      <button type="button" id="btnGris" class="btn btn-dark"> GRIS </button>
-      <button type="button" id="btnSepia" class="btn btn-dark"> SEPIA </button>
-      <button type="button" id="btnSaturacion" class="btn btn-dark"> SATURACION </button>
-      
-      <button type="button" id="btnNinguno" class="btn btn-danger"> NINGUN FILTRO </button>
 
-      <button type="button" id="btnNewImage" class="btn btn-warning"> Dibujar nuevamente </button>
-     
-      <button type="button" id="btnGuardar" class="btn btn-success"> DESCARGAR IMAGEN </button>
-      
-      
+      <div class="row my-2 cent">
+        <div>
+        <input type="color" class="mx-1" id="colorInp" oninput="colorInp(this.value);">
+        <input type="range" class="mx-1" id="grosorPen" oninput="grosorPen(this.value);" min="1" max="15" value="1">
+      </div>
+        <img src="img/icoDelete.png" class="mx-1" id="btnDelete" width="50px" height="50px">
+    
+        <img src="img/icoAddImage.png" width="50px" height="50px" onclick="document.querySelector('.inputImage').click()">
+        <input class="inputImage" type="file" accept="image/*" style="display: none;">
+    
+          <button type="button" id="btnNegativo" class="btn btn-dark mx-1"> NEGATIVO </button>
+          <button type="button" id="btnBrillo" class="btn btn-dark mx-1"> BRILLO </button>
+          <button type="button" id="btnGris" class="btn btn-dark mx-1"> GRIS </button>
+          <button type="button" id="btnSepia" class="btn btn-dark mx-1"> SEPIA </button>
+          <button type="button" id="btnSaturacion" class="btn btn-dark mx-1"> SATURACION </button>
+          <button type="button" id="btnCuadrado" class="btn btn-dark mx-1"> BRILLO </button>
+        </div> 
 
+    <div class="row my-2 mx-1"> 
+    <canvas id="canvasPaint"  width="1310" height="500">
+    </canvas>
+    </div>
+
+    
+    <div class="row cent">
+      <button type="button" id="btnNewImage" class="btn btn-warning mx-1"> Descartar y dibujar nuevamente </button>
+      <button type="button" id="btnGuardar" class="btn btn-success mx-1"> Descargar imagen </button>
+    </div>
       
     </div>
  

@@ -17,38 +17,37 @@ function grosorPen(g){  // cambio el grosor que elije el usuario por parametro
 grosorP = g;
 }
 
-canvas.addEventListener('mousedown', function(e){  // esta funcion capta el primer click cuando dibuja el usuario
-    x = e.clientX - rect.left;
-    y = e.clientY - rect.top;
+canvas.addEventListener('mousedown', function(e){  // esta funcion capta el primer click cuando dibuja el usuario 
+    x = e.offsetX;
+    y = e.offsetY;
     dibujando = true;
 });
 
 canvas.addEventListener('mousemove', function(e){   // esta funcion realiza el movimiento por donde se desplaza el usuario con el mouse
-    if(dibujando === true){ 
-        dibujar(x,y, e.clientX - rect.left, e.clientY - rect.top);
-        x = e.clientX;
-        y = e.clientY - rect.top;
+    if(dibujando === true){
+        draw(ctx,x,y,e.offsetX, e.offsetY);
+        x = e.offsetX;
+        y = e.offsetY;
     }
 });
 
-canvas.addEventListener('mouseup', function(e){   // esta funcion capta cuando el mouse deja de dar click
+window.addEventListener('mouseup', function(e){   // esta funcion capta cuando el mouse deja de dar click
     if(dibujando === true){
-        dibujar(x,y, e.clientX - rect.left, e.clientY - rect.top);
-        x = 0;
-        y = 0;
+        draw(ctx, x, y, e.offsetX, e.offsetY);
+        x= 0;
+        y = 0
         dibujando = false;
     }
 });
-
-function dibujar(x1, y1, x2, y2){   //paso los parametros de la posiciones
+function draw(ctx, x1, y1, x2, y2) { //paso los parametros de la posiciones
     ctx.beginPath();    // abro el path
     ctx.strokeStyle = color;
     ctx.lineWidth = grosorP;
     ctx.moveTo(x1, y1); // empiezo la linea
     ctx.lineTo(x2, y2); // termino la linea
     ctx.stroke();
-    ctx.closePath(); // cierro el path
-}
+    ctx.closePath();    // cierro el path
+  }
 
 function deleteDraw(){
     color = 'white';
@@ -94,8 +93,9 @@ let inputImage = document.querySelector(".inputImage");
     }
 
 
-//      FILTROS DE COLORES
+//     --------------------- FILTROS DE COLORES  ----------------------
 
+//  ----------- NEGATIVO --------------
 function colorNegativo(){
 
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);    //obtengo los datos de la imagen, altura ancho y pos
@@ -110,6 +110,7 @@ function colorNegativo(){
       }
 let btnNegativo = document.querySelector("#btnNegativo").addEventListener("click", colorNegativo);
 
+// ------------- BRILLO ----------
 
 function colorBrillo(){
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);    //obtengo los datos de la imagen, altura ancho y pos
@@ -125,6 +126,7 @@ ctx.putImageData(imageData, 0, 0);
 }
 let btnBrillo = document.querySelector("#btnBrillo").addEventListener("click", colorBrillo); 
 
+//  ----------- GRIS ----------
 function colorGris(){
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let pixeles = imageData.data;
@@ -141,6 +143,7 @@ function colorGris(){
 }
 let btnGris = document.querySelector("#btnGris").addEventListener("click", colorGris);
 
+//  --------- SEPIA ----------
 function colorSepia(){
 
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -163,7 +166,7 @@ function colorSepia(){
 }
 let btnSepia = document.querySelector("#btnSepia").addEventListener("click", colorSepia);
 
-//      SATURACION 
+//    ----  SATURACION  ------
 function saturacion(){
     let imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
     let cantidad= 1.0;
@@ -232,14 +235,8 @@ function HUEaRGB (p, q, t) {
     return p;
   }
 
-//      NINGUN FILTRO
-function ningunFiltro(){
-    alert("none"); 
-}
-let btnNinguno = document.querySelector("#btnNinguno").addEventListener("click", ningunFiltro);
 
-
-//      GUARDAR IMAGEN Y EMPEZAR NUEVO DIBUJO
+// ----------------- GUARDAR IMAGEN Y EMPEZAR NUEVO DIBUJO --------------
 
 function guardarImage(){
 let link = document.createElement('a'); // creo un link para poder descargar la imagen q se creo con el nombre
@@ -265,4 +262,4 @@ ctx.putImageData(imageData, 0, 0);
 }
 let btnNewImage = document.querySelector("#btnNewImage").addEventListener("click", nuevaImagen);
 
-//
+//  ---------------

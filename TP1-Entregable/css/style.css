@@ -2,3 +2,6 @@
     border: 2px solid black;
     cursor:url('../img/lapiz.png'),auto;
 }
+.cent{
+    justify-content: space-evenly;
+}
