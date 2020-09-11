@@ -51,11 +51,10 @@ function draw(ctx, x1, y1, x2, y2) { //paso los parametros de la posiciones
 
 function deleteDraw(){
     color = 'white';
-    //clase para icono borrar
 }
 let btnDel = document.querySelector('#btnDelete').addEventListener('click', deleteDraw);
 
-//      AGREGAR IMAGEN
+//   -------------   AGREGAR IMAGEN
 
 let inputImage = document.querySelector(".inputImage");
 
@@ -117,7 +116,6 @@ function colorBrillo(){
     let pixeles = imageData.data;
    
     for (let i = 0; i < pixeles.length; i += 4) { // recorre uno a uno los pixeles de la imagen y cambia el color por el complementario
-        
         pixeles[i] = (255/3) + pixeles[i]; // rojo
         pixeles[i + 1] = (255/3) + pixeles[i + 1]; // verde
         pixeles[i + 2] = (255/3) + pixeles[i + 2]; // azul   
@@ -138,7 +136,6 @@ function colorGris(){
         pixeles[i+1] = promedio;
         pixeles[i+2] = promedio;
       }
-      //imageData.data = pixeles;
       ctx.putImageData(imageData, 0, 0);
 }
 let btnGris = document.querySelector("#btnGris").addEventListener("click", colorGris);
@@ -150,15 +147,15 @@ function colorSepia(){
     let pixeles = imageData.data;
     let numPixels = imageData.width * imageData.height;
     for ( var i = 0; i < numPixels; i++ ) {
-        var r = pixeles[ i * 4 ];
+        var r = pixeles[ i * 4 ];   //declaro las variables rgb
         var g = pixeles[ i * 4 + 1 ];
         var b = pixeles[ i * 4 + 2 ];
  
-        pixeles[ i * 4 ] = 255 - r;
+        pixeles[ i * 4 ] = 255 - r;    //a pixeles le resto la cantidad que obtenian anteriormente a 255
         pixeles[ i * 4 + 1 ] = 255 - g;
         pixeles[ i * 4 + 2 ] = 255 - b;
  
-        pixeles[ i * 4 ] = (r *.393) + (g *.769) + (b * .189);
+        pixeles[ i * 4 ] = (r *.393) + (g *.769) + (b * .189);  //busco los valores de cada variable para obtener el fondo sep
         pixeles[ i * 4 + 1 ] = (r * .349) + (g *.686) + (b * .168);
         pixeles[ i * 4 + 2 ] = (r * .272) + (g *.534) + (b * .131);
     }
@@ -169,7 +166,7 @@ let btnSepia = document.querySelector("#btnSepia").addEventListener("click", col
 //    ----  SATURACION  ------
 function saturacion(){
     let imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-    let cantidad= 1.0;
+    let cantidad= 1.0;  
      for (y=0;y<canvas.height;y++){
         for (x=0;x<canvas.width;x++){
             let i =(x+y*imageData.width)*4;
@@ -261,5 +258,6 @@ let imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
 ctx.putImageData(imageData, 0, 0);
 }
 let btnNewImage = document.querySelector("#btnNewImage").addEventListener("click", nuevaImagen);
-
 //  ---------------
+
+document.querySelector("#btnAddImage").addEventListener("click",function(){document.querySelector('.inputImage').click()});

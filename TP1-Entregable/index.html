@@ -19,19 +19,19 @@
       </div>
         <img src="img/icoDelete.png" class="mx-1" id="btnDelete" width="50px" height="50px">
     
-        <img src="img/icoAddImage.png" width="50px" height="50px" onclick="document.querySelector('.inputImage').click()">
+        <img src="img/icoAddImage.png" width="50px" height="50px" id="btnAddImage">
         <input class="inputImage" type="file" accept="image/*" style="display: none;">
-    
+
           <button type="button" id="btnNegativo" class="btn btn-dark mx-1"> NEGATIVO </button>
           <button type="button" id="btnBrillo" class="btn btn-dark mx-1"> BRILLO </button>
           <button type="button" id="btnGris" class="btn btn-dark mx-1"> GRIS </button>
           <button type="button" id="btnSepia" class="btn btn-dark mx-1"> SEPIA </button>
           <button type="button" id="btnSaturacion" class="btn btn-dark mx-1"> SATURACION </button>
-          <button type="button" id="btnCuadrado" class="btn btn-dark mx-1"> BRILLO </button>
         </div> 
 
     <div class="row my-2 mx-1"> 
     <canvas id="canvasPaint"  width="1310" height="500">
+
     </canvas>
     </div>
 
@@ -42,8 +42,6 @@
     </div>
       
     </div>
- 
- 
  
  
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
