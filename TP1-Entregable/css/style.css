@@ -5,4 +5,7 @@
 .cent{
     justify-content: space-evenly;
 }
+.centrar{
+    justify-content: center;
+}
 

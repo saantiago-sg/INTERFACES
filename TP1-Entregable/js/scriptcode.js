@@ -146,10 +146,10 @@ function colorSepia(){
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let pixeles = imageData.data;
     let numPixels = imageData.width * imageData.height;
-    for ( var i = 0; i < numPixels; i++ ) {
-        var r = pixeles[ i * 4 ];   //declaro las variables rgb
-        var g = pixeles[ i * 4 + 1 ];
-        var b = pixeles[ i * 4 + 2 ];
+    for ( let i = 0; i < numPixels; i++ ) {
+        let r = pixeles[ i * 4 ];   //declaro las variables rgb
+        let g = pixeles[ i * 4 + 1 ];
+        let b = pixeles[ i * 4 + 2 ];
  
         pixeles[ i * 4 ] = 255 - r;    //a pixeles le resto la cantidad que obtenian anteriormente a 255
         pixeles[ i * 4 + 1 ] = 255 - g;
