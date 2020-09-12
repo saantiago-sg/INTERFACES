@@ -90,8 +90,6 @@ let inputImage = document.querySelector(".inputImage");
         }
     }
     }
-
-
 //     --------------------- FILTROS DE COLORES  ----------------------
 
 //  ----------- NEGATIVO --------------
@@ -232,6 +230,74 @@ function HUEaRGB (p, q, t) {
     return p;
   }
 
+//  BLUR
+  function colorBlur(){
+    
+    let imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+    
+    let matriz = [[1, 1, 1],
+                  [1, 1, 1],
+                  [1, 1, 1]];
+
+    let w = imageData.width;
+    let h = imageData.height;
+
+    for (let x = 0; x < w; x++) {
+        for (let y = 0; y < h; y++) {
+    
+            let ul = ((x-1+w)%w + w*((y-1+h)%h))*4; // ARRIBA A LA IZQUIERDA
+            let uc = ((x-0+w)%w + w*((y-1+h)%h))*4; // ARRIBA AL CENTRO
+            let ur = ((x+1+w)%w + w*((y-1+h)%h))*4; //  ARRIBA A LA DERECHA
+            let ml = ((x-1+w)%w + w*((y+0+h)%h))*4; // IZQUIERDA
+            let mc = ((x-0+w)%w + w*((y+0+h)%h))*4; //  MEDIO
+            let mr = ((x+1+w)%w + w*((y+0+h)%h))*4; //  DERECHA
+            let ll = ((x-1+w)%w + w*((y+1+h)%h))*4; //  ABAJO A LA IZQ
+            let lc = ((x-0+w)%w + w*((y+1+h)%h))*4; // ABAJO EN EL MEDIO
+            let lr = ((x+1+w)%w + w*((y+1+h)%h))*4; // ABAJO A LA DERECHA
+
+            let p0 = imageData.data[ul]*matriz[0][0]; // Aca son las mismas pos
+            let p1 = imageData.data[uc]*matriz[0][1]; 
+            let p2 = imageData.data[ur]*matriz[0][2]; 
+            let p3 = imageData.data[ml]*matriz[1][0]; 
+            let p4 = imageData.data[mc]*matriz[1][1]; 
+            let p5 = imageData.data[mr]*matriz[1][2]; 
+            let p6 = imageData.data[ll]*matriz[2][0]; 
+            let p7 = imageData.data[lc]*matriz[2][1]; 
+            let p8 = imageData.data[lr]*matriz[2][2]; 
+            let r = (p0+p1+p2+p3+p4+p5+p6+p7+p8)/9;
+                
+            let p10 = imageData.data[ul+1]*matriz[0][0]; 
+            let p11 = imageData.data[uc+1]*matriz[0][1]; 
+            let p12 = imageData.data[ur+1]*matriz[0][2];
+            let p13 = imageData.data[ml+1]*matriz[1][0];
+            let p14 = imageData.data[mc+1]*matriz[1][1]; 
+            let p15 = imageData.data[mr+1]*matriz[1][2];
+            let p16 = imageData.data[ll+1]*matriz[2][0];
+            let p17 = imageData.data[lc+1]*matriz[2][1]; 
+            let p18 = imageData.data[lr+1]*matriz[2][2]; 
+            let g = (p10+p11+p12+p13+p14+p15+p16+p17+p18)/9;
+                
+            let  p20 = imageData.data[ul+2]*matriz[0][0]; // upper left
+            let  p21 = imageData.data[uc+2]*matriz[0][1]; // upper mid
+            let  p22 = imageData.data[ur+2]*matriz[0][2]; // upper right
+            let  p23 = imageData.data[ml+2]*matriz[1][0]; // left
+            let  p24 = imageData.data[mc+2]*matriz[1][1]; // center pixel
+            let  p25 = imageData.data[mr+2]*matriz[1][2]; // right
+            let  p26 = imageData.data[ll+2]*matriz[2][0]; // lower left
+            let  p27 = imageData.data[lc+2]*matriz[2][1]; // lower mid
+            let  p28 = imageData.data[lr+2]*matriz[2][2]; // lower right
+            let b = (p20+p21+p22+p23+p24+p25+p26+p27+p28)/9;
+                
+            imageData.data[mc] = r;
+            imageData.data[mc+1] = g;
+            imageData.data[mc+2] = b;
+            imageData.data[mc+3] = imageData.data[lc+3];
+            
+        }
+    }
+    ctx.putImageData(imageData, 0, 0);
+  }
+  let btnBlur = document.querySelector("#btnBlur").addEventListener("click", colorBlur);
 
 // ----------------- GUARDAR IMAGEN Y EMPEZAR NUEVO DIBUJO --------------
 
@@ -249,9 +315,9 @@ link.setAttribute( 'href', url );
 let btnGuardar = document.querySelector("#btnGuardar").addEventListener("click", guardarImage);
 
 
-function nuevaImagen(){
+function nuevaImagen(){ //descarta y dibuja nuevamente
 ctx.fillStyle = 'white';
-ctx.fillRect(0, 0, canvas.width, canvas.height); //dibuja un cuadrado
+ctx.fillRect(0, 0, canvas.width, canvas.height); 
 
 let imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
 
