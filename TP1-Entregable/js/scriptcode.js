@@ -169,7 +169,7 @@ function saturacion(){
         for (x=0;x<canvas.width;x++){
             let i =(x+y*imageData.width)*4;
             let hsl=RGBaHSL(imageData.data[i+0],imageData.data[i+1],imageData.data[i+2]);
-            hsl[1]= cantidad;   //al ser el valor 1, elijo saturacion
+            hsl[1]= cantidad;   //  al ser el valor 1, elijo saturacion
             let rgbNuevo=HSLaRGB(hsl[0],hsl[1],hsl[2]);
             imageData.data[i+0]=rgbNuevo[0];
             imageData.data[i+1]=rgbNuevo[1];
@@ -277,15 +277,15 @@ function HUEaRGB (p, q, t) {
             let p18 = imageData.data[lr+1]*matriz[2][2]; 
             let g = (p10+p11+p12+p13+p14+p15+p16+p17+p18)/9;
                 
-            let  p20 = imageData.data[ul+2]*matriz[0][0]; // upper left
-            let  p21 = imageData.data[uc+2]*matriz[0][1]; // upper mid
-            let  p22 = imageData.data[ur+2]*matriz[0][2]; // upper right
-            let  p23 = imageData.data[ml+2]*matriz[1][0]; // left
-            let  p24 = imageData.data[mc+2]*matriz[1][1]; // center pixel
-            let  p25 = imageData.data[mr+2]*matriz[1][2]; // right
-            let  p26 = imageData.data[ll+2]*matriz[2][0]; // lower left
-            let  p27 = imageData.data[lc+2]*matriz[2][1]; // lower mid
-            let  p28 = imageData.data[lr+2]*matriz[2][2]; // lower right
+            let  p20 = imageData.data[ul+2]*matriz[0][0]; 
+            let  p21 = imageData.data[uc+2]*matriz[0][1]; 
+            let  p22 = imageData.data[ur+2]*matriz[0][2]; 
+            let  p23 = imageData.data[ml+2]*matriz[1][0]; 
+            let  p24 = imageData.data[mc+2]*matriz[1][1]; 
+            let  p25 = imageData.data[mr+2]*matriz[1][2]; 
+            let  p26 = imageData.data[ll+2]*matriz[2][0]; 
+            let  p27 = imageData.data[lc+2]*matriz[2][1]; 
+            let  p28 = imageData.data[lr+2]*matriz[2][2]; 
             let b = (p20+p21+p22+p23+p24+p25+p26+p27+p28)/9;
                 
             imageData.data[mc] = r;
@@ -315,7 +315,7 @@ link.setAttribute( 'href', url );
 let btnGuardar = document.querySelector("#btnGuardar").addEventListener("click", guardarImage);
 
 
-function nuevaImagen(){ //descarta y dibuja nuevamente
+function descartarImagen(){ //descarta y dibuja nuevamente
 ctx.fillStyle = 'white';
 ctx.fillRect(0, 0, canvas.width, canvas.height); 
 
@@ -323,7 +323,8 @@ let imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
 
 ctx.putImageData(imageData, 0, 0);
 }
-let btnNewImage = document.querySelector("#btnNewImage").addEventListener("click", nuevaImagen);
-//  ---------------
+let btnNewImage = document.querySelector("#btnNewImage").addEventListener("click", descartarImagen);
+
+//  --------------- BTN DE AGREGAR IMAGEN -----------------
 
 document.querySelector("#btnAddImage").addEventListener("click",function(){document.querySelector('.inputImage').click()});
