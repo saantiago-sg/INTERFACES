@@ -1,0 +1,24 @@
+body{
+    background: linear-gradient(0deg, #cf881f, #ffffff);
+}
+.container{
+    text-align: center;  
+    height: 800px;
+}
+.center{
+    justify-content: center;
+}
+#canvas {
+    display: block;
+    cursor: pointer;
+    border: 4px solid gray;
+    transform: translateY(-100%);
+}
+#canvasGame{
+    display: block;
+    border: 4px solid gray;
+}
+
+
+
+
