@@ -4,7 +4,6 @@ let ctx = canvas.getContext("2d");
 let canvasGame = document.querySelector("#canvasGame");
 let ctxGame = canvasGame.getContext("2d");
 
-
 let dx=[ 1,-1, 0, 0, 1,-1, 1,-1]; //destinos x y
 let dy=[ 0, 0, 1,-1,-1, 1, 1,-1];
 
@@ -14,12 +13,13 @@ let mitadCelda = celda / 2;
 let turno = 2;
 let color;
 let isDragging = false;
+let one;
+let two;
 
 let matriz = [];
 for(let i = 0; i < 7; i++){
   matriz[i] = new Array(6);
 }
-
 //  DIBUJO EL TRABLERO EN EL CANVAS
 function drawImage(){
     let img = new Image;
@@ -45,6 +45,7 @@ for (let y = 100; y < 700; y += celda) {
     drawCircles(x + mitadCelda, y + mitadCelda, 35);
   }
 }
+
 
 // IDENTIFICAR COLUMNA CLICKEADA
 function getMousePos(evt) {
@@ -125,6 +126,7 @@ function handleMouseDown(e){  //CUANDO LO APRETO
       if(isMouseInfiguras(startX,startY,figuras[i])){ 
           selectedfigurasIndex=i; // si el mouse esta dentro selecciona la figura
           isDragging=true;
+          obtenerTrue(isDragging);
           return;
       }
     }else{
@@ -147,11 +149,14 @@ function handleMouseUp(e){    //SUELTA
   e.stopPropagation();
   // termina de arrastrar y limpia el isdrag
   isDragging=false;
+  //ACA VA EL FALSE;
+  obtenerTrue(isDragging);
+  
 }
 
 function handleMouseOut(e){
-  if(!isDragging){  // si no arrastra, retorna
-    return;
+  if(!isDragging){  // si no arrastra, retorna  
+   return;
   }
   e.preventDefault();
   e.stopPropagation();
@@ -193,9 +198,11 @@ function draw(){
        } 
 }
 }
+
 }
 drag();
-// FIN DE ARRASTRAR ------------------------------------------------------
+// ------------------------- FIN DE ARRASTRAR --------------------------------
+
 
 canvas.addEventListener('click', function (evt) { //ejecuto la ficha
   //Poner un rectangulo blanco hasta arriba
@@ -214,18 +221,17 @@ canvas.addEventListener('click', function (evt) { //ejecuto la ficha
        // SI ARRASTRA LA FICHA, dejar tocar 
       fichaCayendo(i + mitadCelda, mitadCelda, topeY * celda + mitadCelda); // x - y - yMAX
       canvas.style.pointerEvents = 'none';
+  
       if(!yaGanoAlguien(i/100, topeY-1)){
         setTimeout(function(){ 
           canvas.style.pointerEvents = 'auto';
         }, 800);
       } else{
         colorearfichasWin();
+        }
       }
     }
-  }
 });
-
-
 
 
 function llenarColumna(numCol){
@@ -240,36 +246,36 @@ function llenarColumna(numCol){
 let posWinners=[[0,0],[0,0],[0,0],[0,0]];
 
 
-function fCount(mx,my,columna,fila,valorFicha){
+function contar(mx,my,columna,fila,valorFicha){
   if(fila<0 || fila>5 || columna<0 || columna>6)
     return 0;
   if(matriz[columna][fila]!=valorFicha)
     return 0;
-  return 1 + fCount(mx,my,columna+my,fila+mx,valorFicha);
+  return 1 + contar(mx,my,columna+my,fila+mx,valorFicha);
 }
 
 
 let posi=0;
-function fCount2(mx,my,columna,fila,valorFicha){
+function contarDos(mx,my,columna,fila,valorFicha){
   if(fila<0 || fila>5 || columna<0 || columna>6)
     return;
   if(matriz[columna][fila]!=valorFicha)
     return;
   posWinners[posi] = [columna, fila];
   posi++;
-  fCount2(mx,my,columna+my,fila+mx,valorFicha);
+  contarDos(mx,my,columna+my,fila+mx,valorFicha);
 }
 
 function yaGanoAlguien(xFicha, yFicha){
   let valorFicha = matriz[xFicha][yFicha];
   for(let i=0;i<8;i+=2){
     
-    let lado1=fCount(dx[i],dy[i],xFicha+dy[i],yFicha+dx[i],valorFicha);
-    let lado2=fCount(dx[i+1],dy[i+1],xFicha+dy[i+1],yFicha+dx[i+1],valorFicha);
+    let lado1=contar(dx[i],dy[i],xFicha+dy[i],yFicha+dx[i],valorFicha);
+    let lado2=contar(dx[i+1],dy[i+1],xFicha+dy[i+1],yFicha+dx[i+1],valorFicha);
     if(lado1+lado2+1>=4){
       posi=0;
-      fCount2(dx[i],dy[i],xFicha+dy[i],yFicha+dx[i],valorFicha,posi);
-      fCount2(dx[i+1],dy[i+1],xFicha+dy[i+1],yFicha+dx[i+1],valorFicha,posi);
+      contarDos(dx[i],dy[i],xFicha+dy[i],yFicha+dx[i],valorFicha,posi);
+      contarDos(dx[i+1],dy[i+1],xFicha+dy[i+1],yFicha+dx[i+1],valorFicha,posi);
       posWinners[posi]=[xFicha,yFicha];
       
       return true; 
@@ -291,8 +297,18 @@ function colorearfichasWin(){
       ctx.stroke();
       ctx.closePath();
   }
+  if(color == "red"){
+two = getParticipanteOne(two);
+felicitaciones(two);
+  }else{
+one = getParticipanteOne(one);
+felicitaciones(one);
+  }
+}
+let persona;
+function felicitaciones(persona){
   Swal.fire({
-    title: 'FELICITACIONES, GANO EL EQUIPO '+ color,
+    title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE "+persona,
     width: 600,
     padding: '3em',
     background: '#fff url(/images/trees.png)',
@@ -304,7 +320,6 @@ function colorearfichasWin(){
     `
   })
 }
-
 // EFECTO DE FICHA 
 function fichaCayendo(x, y, yMax) {
   ctxGame.clearRect(x - mitadCelda, 0, celda, yMax); //convierto todos los pixeles en el rectangulo
@@ -322,33 +337,43 @@ function fichaCayendo(x, y, yMax) {
 }
 
 //  CAMBIO DE TURNO
+function getParticipanteOne(){
+  one = document.querySelector("#nombreOne").value;
+  two = document.querySelector("#nombreTwo").value;
+  return one, two;
+}
+let btnIniciar = document.querySelector("#btnIniciar").addEventListener("click", getParticipanteOne);
+ 
+mostrarTurno();
 function cambiarTurno(){
 turno = (turno == 1 ? 2 : 1);
 color = (turno == 1 ? 'red': 'yellow');
 
 mostrarTurno();
 }
-//muestra el turno por pantalla
-function mostrarTurno(){  
+//  MOSTRAR TURNO POR PANTALLA
+function mostrarTurno(){ 
+one = getParticipanteOne(one);
+two = getParticipanteOne(two);
     if(turno == 1){
-        ctxGame.font='oblique 700 30px Arial';
+        ctxGame.font='oblique 650 15px Arial';
         ctxGame.fillStyle = "#a3a310";
-        ctxGame.fillText("TURNO: YELLOW", 720, 50);
+        ctxGame.fillText("TURNO: Equipo amarrillo de "+ one, 705, 50);
     }
     else{
-        ctxGame.font='oblique 700 30px Arial';
-        ctxGame.fillText("TURNO: RED", 740, 50);
+        ctxGame.font='oblique 650 15px Arial';
+        ctxGame.fillText("TURNO: Equipo rojo de "+ two, 705, 50);  //PARTICIPANTES--------------------------------
     }
 }
 
-//vuelve la ficha a su lugar luego de ser ejecutada
+//  VUELVE LA FICHA A SU LUGAR LUEGO DE SER ARRASTRADA
 function retornarLugar(){
   ctxGame.clearRect(700,0,canvasGame.width,canvasGame.height);
   drag();
 }
 
 
-// Animacion en el hover 
+// EFECTO DE FICHAS EN LA PARTE BLANCA
 function efectoFichas(event){
   color = (turno == 1 ? 'yellow': 'red');
   let mousePos = getMousePos(event);
@@ -366,10 +391,12 @@ function efectoFichas(event){
   ctx.stroke();
 }
 
+//  REINICIA LA PARTIDA 
 let btnReiniciar = document.querySelector("#btnReiniciar");
 btnReiniciar.addEventListener('click', function () {
   location.reload();
 });
+
 
 //COSAS PARA MEJORAR
 //SI NO EMPIEZA ARRASTRANDO NO PUEDE APRETAR EL BOTON
