@@ -297,18 +297,11 @@ function colorearfichasWin(){
       ctx.stroke();
       ctx.closePath();
   }
-  if(color == "red"){
-two = getParticipanteOne(two);
-felicitaciones(two);
-  }else{
-one = getParticipanteOne(one);
-felicitaciones(one);
-  }
-}
-let persona;
-function felicitaciones(persona){
+  
+  if(color == "yellow"){
+  getParticipanteOne(one);
   Swal.fire({
-    title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE "+persona,
+    title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + one,
     width: 600,
     padding: '3em',
     background: '#fff url(/images/trees.png)',
@@ -319,7 +312,38 @@ function felicitaciones(persona){
       repeat
     `
   })
+  }else if(color == "red"){
+  getParticipanteOne(two);
+  Swal.fire({
+    title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + two,
+    width: 600,
+    padding: '3em',
+    background: '#fff url(/images/trees.png)',
+    backdrop: `
+      rgba(0,0,123,0.4)
+      url("./img/gifwin.gif")
+      left top
+      repeat
+    `
+  })
+  }
 }
+/*
+let persona;
+function felicitaciones(persona){
+  Swal.fire({
+    title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + persona,
+    width: 600,
+    padding: '3em',
+    background: '#fff url(/images/trees.png)',
+    backdrop: `
+      rgba(0,0,123,0.4)
+      url("./img/gifwin.gif")
+      left top
+      repeat
+    `
+  })
+}*/
 // EFECTO DE FICHA 
 function fichaCayendo(x, y, yMax) {
   ctxGame.clearRect(x - mitadCelda, 0, celda, yMax); //convierto todos los pixeles en el rectangulo
