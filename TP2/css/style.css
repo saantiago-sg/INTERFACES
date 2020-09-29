@@ -23,6 +23,16 @@ body{
     font-weight: 550;
     color: khaki;
 }
+.fondo{
+    color: red;
+    background-color: black;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+}
+.fondoBtn{
+    font-size: 22px;
+}
 #canvas {
     display: block;
     cursor: pointer;

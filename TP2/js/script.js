@@ -15,6 +15,8 @@ let color;
 let isDragging = false;
 let one;
 let two;
+let iniciar;
+let tiempo;
 
 let matriz = [];
 for(let i = 0; i < 7; i++){
@@ -57,7 +59,6 @@ function getMousePos(evt) {
   };
 }
 
-
 // ------------   ARRASTRAR   ----------------
 function drag(){
   
@@ -81,14 +82,14 @@ let figuras =[];
 
 figuras.push( {
       x:750,
-      y:150,
+      y:100,
      radius:35,
      color:"yellow"
     });
 
 figuras.push( {
       x:950,
-      y:150,
+      y:100,
      radius:35,
      color:"red"
     });
@@ -203,9 +204,44 @@ function draw(){
 drag();
 // ------------------------- FIN DE ARRASTRAR --------------------------------
 
+//  --------------- TEMPORIZADOR  ----------
+function initTimer() {
+  //al clickear en ficha iniciar
+  iniciar = setInterval(function() {
+     timer() 
+}, 1000);
+}
 
+function timer() {
+  tiempo = parseInt(document.getElementById('time').value);
+  document.getElementById("time").value = eval(tiempo + 1);
+  if(tiempo > 9){
+    //cambiar de turno
+    reset();
+    ctxGame.clearRect(700,151,canvasGame.width,canvasGame.height);
+    cambiarTurno();
+  }
+}
+
+
+function reset() {
+  tiempo = parseInt(document.getElementById('time').value);
+  document.getElementById('time').value = "0";
+}
+
+function stop() {
+  //cuando haya un ganador parar
+  clearInterval(iniciar);
+}
+//  --------------- FIN FUNC DE TEMPORIZADOR -------------------
+let i = 0;
 canvas.addEventListener('click', function (evt) { //ejecuto la ficha
   //Poner un rectangulo blanco hasta arriba
+  if(i < 1){
+    i++;
+    initTimer();  //inicio el timer
+  }
+  reset();  // reseteo para q no se cree un bucle
   retornarLugar();
   ctx.beginPath();
   ctx.fillStyle = "white";
@@ -234,6 +270,7 @@ canvas.addEventListener('click', function (evt) { //ejecuto la ficha
 });
 
 
+mostrarTurno();
 function llenarColumna(numCol){
   let numFila = 5;
   while(numFila >= 0 && matriz[numCol][numFila] != undefined){
@@ -297,7 +334,7 @@ function colorearfichasWin(){
       ctx.stroke();
       ctx.closePath();
   }
-  
+  stop();
   if(color == "yellow"){
   getParticipanteOne(one);
   Swal.fire({
@@ -328,22 +365,7 @@ function colorearfichasWin(){
   })
   }
 }
-/*
-let persona;
-function felicitaciones(persona){
-  Swal.fire({
-    title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + persona,
-    width: 600,
-    padding: '3em',
-    background: '#fff url(/images/trees.png)',
-    backdrop: `
-      rgba(0,0,123,0.4)
-      url("./img/gifwin.gif")
-      left top
-      repeat
-    `
-  })
-}*/
+
 // EFECTO DE FICHA 
 function fichaCayendo(x, y, yMax) {
   ctxGame.clearRect(x - mitadCelda, 0, celda, yMax); //convierto todos los pixeles en el rectangulo
@@ -368,11 +390,10 @@ function getParticipanteOne(){
 }
 let btnIniciar = document.querySelector("#btnIniciar").addEventListener("click", getParticipanteOne);
  
-mostrarTurno();
+
 function cambiarTurno(){
 turno = (turno == 1 ? 2 : 1);
 color = (turno == 1 ? 'red': 'yellow');
-
 mostrarTurno();
 }
 //  MOSTRAR TURNO POR PANTALLA
@@ -382,11 +403,11 @@ two = getParticipanteOne(two);
     if(turno == 1){
         ctxGame.font='oblique 650 15px Arial';
         ctxGame.fillStyle = "#a3a310";
-        ctxGame.fillText("TURNO: Equipo amarrillo de "+ one, 705, 50);
+        ctxGame.fillText("TURNO: Equipo amarrillo de "+ one, 705, 170);
     }
     else{
         ctxGame.font='oblique 650 15px Arial';
-        ctxGame.fillText("TURNO: Equipo rojo de "+ two, 705, 50);  //PARTICIPANTES--------------------------------
+        ctxGame.fillText("TURNO: Equipo rojo de "+ two, 705, 170);  //PARTICIPANTES--------------------------------
     }
 }
 
@@ -420,8 +441,3 @@ let btnReiniciar = document.querySelector("#btnReiniciar");
 btnReiniciar.addEventListener('click', function () {
   location.reload();
 });
-
-
-//COSAS PARA MEJORAR
-//SI NO EMPIEZA ARRASTRANDO NO PUEDE APRETAR EL BOTON
-//SOLO PODER ARRASTRAR LA QUE MERECE EL TURNO
