@@ -149,6 +149,7 @@ function iniciarContador(){
       reset();
       ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
       cambiarTurno();
+      initTimer();
     }
   }, 1000);
 
