@@ -9,6 +9,7 @@
     <title>4 EN LINEA</title>
 </head>
 <body>
+    
     <div class="header">
             <h1 class="tittle t-center">¡CONECTA Y GANA!</h1>
     </div>  
@@ -21,28 +22,26 @@
             <input type="text" id="nombreTwo" class="form-control" placeholder="Ingresar nombre participante 2 (equipo red)">
         </div>
         <div class="col-1">
-            <button id="btnIniciar" class="center btn btn-warning">INICIAR</button>
+            <button id="btnIniciar" class="center btn btn-warning">ACEPTAR</button>
         </div>
     </div>
 
 
-    <div class="row mt-2 center">
-        <div class="col-1">
-            <input type="text" class="form-control fondo" id="time" value="0">
-        </div>
-        <div class="col-2">
-            <button type="button" id="btnReiniciar" class="center btn btn-warning fondoBtn">VOLVER A JUGAR</button>
-        </div>
-    </div>
-    
     
     <div class="container mt-2">
-    <canvas id="canvasGame" width="1000" height="700"></canvas>
-    <canvas id="canvas" width="700" height="700" onmousemove="efectoFichas(event)"> </canvas>
+    <div class="row">
+
+    <div class="col-10">
+    <canvas id="canvasGame" width="860" height="550"></canvas>
+    <canvas id="canvas" width="560" height="550" onmousemove="efectoFichas(event)"> </canvas>
     </div>
-
-
-
+        <div class="col-2 top">
+            <button type="button" id="btnReiniciar" class="center btn btn-warning fondoBtn">VOLVER A JUGAR</button>
+            <input type="text" class="form-control fondo mt-2" id="time" value="0">
+        
+        </div>
+    </div>
+</div>
     
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

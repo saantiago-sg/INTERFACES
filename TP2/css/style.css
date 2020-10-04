@@ -1,10 +1,28 @@
 body{
     background-color: khaki;
+    overflow-x: hidden;
+    margin: 0;
 }
+.centrar-con{
+margin-left: 200px;
+}
+#canvas {   /* tablero */
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    border: 4px solid gray;
+    transform: translateY(-100%);
+}
+#canvasGame{
+    display: block;
+    position: relative;
+    border: 4px solid gray;
+}
+/* 
 .container{
     text-align: center;  
-    height: 720px;
-}
+    height: 600px;
+} */
 .center{
     justify-content: center;
 }
@@ -14,7 +32,7 @@ body{
 .header{
     background: linear-gradient(181deg, #734222, #db9249);
     width: 100%;
-    height: 90px;
+    height: 80px;
     justify-content: space-between;
 }
 .tittle{
@@ -33,14 +51,6 @@ body{
 .fondoBtn{
     font-size: 22px;
 }
-#canvas {
-    display: block;
-    cursor: pointer;
-    border: 4px solid gray;
-    transform: translateY(-100%);
+.top{
+    top:150px;
 }
-#canvasGame{
-    display: block;
-    border: 4px solid gray;
-}
-
