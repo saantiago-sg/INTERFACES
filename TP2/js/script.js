@@ -60,17 +60,17 @@ function getMousePos(evt) {
   };
 }
 
+let i = 0;
 
 canvas.addEventListener('click', function (evt) { //ejecuto la ficha
   //Poner un rectangulo blanco hasta arriba
-// let i = 0;
 
-//   if(i < 1){
-//     i++;
-//     initTimer();  //inicio el timer
-//   }
-//   reset();  // reseteo para q no se cree un bucle
-//   retornarLugar();  // luego de arrastrar me retorna a la posicion origen
+  if(i < 1){
+    i++;
+    initTimer();  //inicio el timer
+  }
+  reset();  // reseteo para q no se cree un bucle
+  retornarLugar();  // luego de arrastrar me retorna a la posicion origen
   ctx.beginPath();
   ctx.fillStyle = "white";
   ctx.fillRect(0,0,celda*7, 80);
@@ -100,34 +100,34 @@ canvas.addEventListener('click', function (evt) { //ejecuto la ficha
 
 
 //  --------------- TEMPORIZADOR  ----------
-// function initTimer() {
-//   //al clickear en ficha iniciar
-//   iniciar = setInterval(function() {
-//      timer() 
-// }, 1750);
-// }
+function initTimer() {
+  //al clickear en ficha iniciar
+  iniciar = setInterval(function() {
+     timer() 
+}, 1000);
+}
 
-// function timer() {
-//   tiempo = parseInt(document.getElementById('time').value);
-//   document.getElementById("time").value = eval(tiempo + 1);
-//   if(tiempo > 9){
-//     //cambiar de turno
-//     reset();
-//     ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
-//     cambiarTurno();
-//   }
-// }
+function timer() {
+  tiempo = parseInt(document.getElementById('time').value);
+  document.getElementById("time").value = eval(tiempo + 1);
+  if(tiempo > 9){
+    //cambiar de turno
+    reset();
+    ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
+    cambiarTurno();
+  }
+}
 
 
-// function reset() {
-//   tiempo = parseInt(document.getElementById('time').value);
-//   document.getElementById('time').value = "0";
-// }
+function reset() {
+  tiempo = parseInt(document.getElementById('time').value);
+  document.getElementById('time').value = "0";
+}
 
-// function stop() {
-//   //cuando haya un ganador parar
-//   clearInterval(iniciar);
-// }
+function stop() {
+  //cuando haya un ganador parar
+  clearInterval(iniciar);
+}
 //  --------------- FIN FUNC DE TEMPORIZADOR -------------------
 
 mostrarTurno();
