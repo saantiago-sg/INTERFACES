@@ -15,8 +15,6 @@ let color;
 let isDragging = false;
 let one;
 let two;
-let iniciar;
-let tiempo;
 
 
 let matriz = [];
@@ -60,16 +58,20 @@ function getMousePos(evt) {
   };
 }
 
-let i = 0;
-
+let aux = 0;
 canvas.addEventListener('click', function (evt) { //ejecuto la ficha
   //Poner un rectangulo blanco hasta arriba
-
-  if(i < 1){
-    i++;
+  if(aux >= 1){
+    reset();  // reseteo para q no se cree un bucle
+    initTimer();
+    ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);  //limpio los nombres de turnos
+    aux++;
+  }else{
     initTimer();  //inicio el timer
+    ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
+    aux++;
   }
-  reset();  // reseteo para q no se cree un bucle
+
   retornarLugar();  // luego de arrastrar me retorna a la posicion origen
   ctx.beginPath();
   ctx.fillStyle = "white";
@@ -100,34 +102,68 @@ canvas.addEventListener('click', function (evt) { //ejecuto la ficha
 
 
 //  --------------- TEMPORIZADOR  ----------
-function initTimer() {
-  //al clickear en ficha iniciar
-  iniciar = setInterval(function() {
-     timer() 
-}, 1000);
+// let iniciar;
+// let tiempo = 0;
+
+// function initTimer() {
+//   //al clickear en ficha iniciar
+//   iniciar = setInterval(function() {
+//      timer() 
+// }, 1000);
+// }
+
+// function timer() {
+//   tiempo = parseInt(document.getElementById('time').value);
+//   document.getElementById("time").value = eval(tiempo + 1);
+//   if(tiempo > 9){
+//     //cambiar de turno
+//     reset();
+//     ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
+//     cambiarTurno();
+//   }
+// }
+
+// function reset() {
+//   time = parseInt(document.getElementById('time').value);
+//   document.getElementById('time').value = "0";
+// }
+
+// function stop() {
+//   //cuando haya un ganador parar
+//   clearInterval(iniciar);
+// }
+
+let temporizador = document.querySelector("#temporizador");
+let tiempo = 0; 
+let intervalo = 0;
+
+function initTimer(){
+  iniciarContador();
 }
 
-function timer() {
-  tiempo = parseInt(document.getElementById('time').value);
-  document.getElementById("time").value = eval(tiempo + 1);
-  if(tiempo > 9){
-    //cambiar de turno
-    reset();
-    ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
-    cambiarTurno();
-  }
+function iniciarContador(){
+  intervalo = setInterval(function(){
+    tiempo++;
+    temporizador.innerHTML = tiempo;
+    if(tiempo > 9){   // si se pasa de los 10 segundo, reseteo y cambio de turno
+      reset();
+      ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
+      cambiarTurno();
+    }
+  }, 1000);
+
 }
 
-
-function reset() {
-  tiempo = parseInt(document.getElementById('time').value);
-  document.getElementById('time').value = "0";
+function stop(){
+  clearInterval(intervalo);
 }
 
-function stop() {
-  //cuando haya un ganador parar
-  clearInterval(iniciar);
+function reset(){
+tiempo = 0;
+temporizador.innerHTML = tiempo;
+clearInterval(intervalo);
 }
+
 //  --------------- FIN FUNC DE TEMPORIZADOR -------------------
 
 mostrarTurno();
@@ -244,8 +280,6 @@ function handleMouseDown(e){  //CUANDO LO APRETO
   startX=parseInt(e.clientX-offsetX);
   startY=parseInt(e.clientY-offsetY);
 
-  console.log(startX);
-  console.log(startY);
 
   for(let i=0;i<figuras.length;i++){
     if(figuras[i].color == "red" && turno == 2){  // defino el color y el turno, para poder utilizar 1 a la vez
