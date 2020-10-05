@@ -60,18 +60,22 @@ function getMousePos(evt) {
 
 let aux = 0;
 canvas.addEventListener('click', function (evt) { //ejecuto la ficha
-  //Poner un rectangulo blanco hasta arriba
+  if(estado == false){  //sonidos, activar y desactivar
+    mySound.stop();
+  }else{
+    mySound.play();
+  }
+
   if(aux >= 1){
     reset();  // reseteo para q no se cree un bucle
-    initTimer();
+    initTimer(); //inicio el timer
     ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);  //limpio los nombres de turnos
     aux++;
   }else{
-    initTimer();  //inicio el timer
+    initTimer();  
     ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
     aux++;
   }
-
   retornarLugar();  // luego de arrastrar me retorna a la posicion origen
   ctx.beginPath();
   ctx.fillStyle = "white";
@@ -84,7 +88,6 @@ canvas.addEventListener('click', function (evt) { //ejecuto la ficha
       if(matriz[i/80][0] != undefined) break;
       let topeY = llenarColumna(i/80) + 1;
       cambiarTurno();
-       // SI ARRASTRA LA FICHA, dejar tocar 
       fichaCayendo(i + mitadCelda, mitadCelda, topeY * celda + mitadCelda); // x - y - yMAX
       canvas.style.pointerEvents = 'none';
   
@@ -99,45 +102,42 @@ canvas.addEventListener('click', function (evt) { //ejecuto la ficha
     }
 });
 
+//  AGREGO SONIDO, LO USO PARA LANZAR FICHA
+
+let mySound;
+mySound = new sound("./sound.mp3");
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+
+  this.play = function(){
+      this.sound.play();
+  }
+  
+  this.stop = function(){
+      this.sound.pause();
+  }    
+}
+
+let estado = false;
+
+let btnSonido = document.querySelector("#btnSonido"); // button on/off
+btnSonido.onclick = function(){
+  estado = !estado;
+}
 
 
 //  --------------- TEMPORIZADOR  ----------
-// let iniciar;
-// let tiempo = 0;
-
-// function initTimer() {
-//   //al clickear en ficha iniciar
-//   iniciar = setInterval(function() {
-//      timer() 
-// }, 1000);
-// }
-
-// function timer() {
-//   tiempo = parseInt(document.getElementById('time').value);
-//   document.getElementById("time").value = eval(tiempo + 1);
-//   if(tiempo > 9){
-//     //cambiar de turno
-//     reset();
-//     ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
-//     cambiarTurno();
-//   }
-// }
-
-// function reset() {
-//   time = parseInt(document.getElementById('time').value);
-//   document.getElementById('time').value = "0";
-// }
-
-// function stop() {
-//   //cuando haya un ganador parar
-//   clearInterval(iniciar);
-// }
-
 let temporizador = document.querySelector("#temporizador");
 let tiempo = 0; 
 let intervalo = 0;
 
-function initTimer(){
+function initTimer(){ //INICIA EL TIMER
   iniciarContador();
 }
 
@@ -155,11 +155,11 @@ function iniciarContador(){
 
 }
 
-function stop(){
+function stop(){  //PARA EL TIMER
   clearInterval(intervalo);
 }
 
-function reset(){
+function reset(){ //RESETEA EL TIME
 tiempo = 0;
 temporizador.innerHTML = tiempo;
 clearInterval(intervalo);
@@ -182,7 +182,7 @@ let posWinners=[[0,0],[0,0],[0,0],[0,0]];
 function contar(mx,my,columna,fila,valorFicha){
   if(fila<0 || fila>5 || columna<0 || columna>6)
     return 0;
-  if(matriz[columna][fila]!=valorFicha)
+  if(matriz[columna][fila]!=valorFicha) //chequeo pos
     return 0;
   return 1 + contar(mx,my,columna+my,fila+mx,valorFicha);
 }
@@ -194,11 +194,12 @@ function contarDos(mx,my,columna,fila,valorFicha){
     return;
   if(matriz[columna][fila]!=valorFicha)
     return;
-  posWinners[posi] = [columna, fila];
+  posWinners[posi] = [columna, fila]; 
   posi++;
   contarDos(mx,my,columna+my,fila+mx,valorFicha);
 }
 
+// verifico ganador del game
 function yaGanoAlguien(xFicha, yFicha){
   let valorFicha = matriz[xFicha][yFicha];
   for(let i=0;i<8;i+=2){
@@ -246,7 +247,7 @@ figuras.push( {
      color:"yellow"
     });
 
-figuras.push( { //RECORDAR: LIMpiar el drag
+figuras.push( { 
       x:800,
       y:80,
      radius:30,
@@ -286,7 +287,6 @@ function handleMouseDown(e){  //CUANDO LO APRETO
       if(isMouseInfiguras(startX,startY,figuras[i])){ 
           selectedfigurasIndex=i; // si el mouse esta dentro selecciona la figura
           isDragging=true;
-          //obtenerTrue(isDragging);
           return;
       }
     }else{
@@ -377,7 +377,7 @@ function colorearfichasWin(){
   }
   stop();
   if(color == "yellow"){
-  getParticipante(one);
+  getParticipante(one); // obtengoParticipante y verifico
   Swal.fire({
     title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + one,
     width: 600,
@@ -422,8 +422,8 @@ function fichaCayendo(x, y, yMax) {
   }
   return;
 }
-
 mostrarTurno();
+
 function getParticipante(){
   one = document.querySelector("#nombreOne").value;
   two = document.querySelector("#nombreTwo").value;
