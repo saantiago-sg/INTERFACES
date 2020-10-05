@@ -147,6 +147,7 @@ function iniciarContador(){
     temporizador.innerHTML = tiempo;
     if(tiempo > 9){   // si se pasa de los 10 segundo, reseteo y cambio de turno
       reset();
+      retornarLugar();
       ctxGame.clearRect(560,151,canvasGame.width,canvasGame.height);
       cambiarTurno();
       initTimer();
