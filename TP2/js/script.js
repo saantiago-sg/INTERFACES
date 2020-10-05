@@ -167,7 +167,6 @@ clearInterval(intervalo);
 
 //  --------------- FIN FUNC DE TEMPORIZADOR -------------------
 
-mostrarTurno();
 function llenarColumna(numCol){
   let numFila = 5;
   while(numFila >= 0 && matriz[numCol][numFila] != undefined){
@@ -378,7 +377,7 @@ function colorearfichasWin(){
   }
   stop();
   if(color == "yellow"){
-  getParticipanteOne(one);
+  getParticipante(one);
   Swal.fire({
     title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + one,
     width: 600,
@@ -392,7 +391,7 @@ function colorearfichasWin(){
     `
   })
   }else if(color == "red"){
-  getParticipanteOne(two);
+  getParticipante(two);
   Swal.fire({
     title: 'FELICITACIONES, GANO EL EQUIPO '+ color + " DE " + two,
     width: 600,
@@ -424,13 +423,13 @@ function fichaCayendo(x, y, yMax) {
   return;
 }
 
-//  CAMBIO DE TURNO
-function getParticipanteOne(){
+mostrarTurno();
+function getParticipante(){
   one = document.querySelector("#nombreOne").value;
   two = document.querySelector("#nombreTwo").value;
   return one, two;
 }
-let btnIniciar = document.querySelector("#btnIniciar").addEventListener("click", getParticipanteOne);
+let btnIniciar = document.querySelector("#btnIniciar").addEventListener("click", getParticipante);
  
 
 function cambiarTurno(){
@@ -440,8 +439,8 @@ mostrarTurno();
 }
 //  MOSTRAR TURNO POR PANTALLA
 function mostrarTurno(){ 
-one = getParticipanteOne(one);
-two = getParticipanteOne(two);
+one = getParticipante(one);
+two = getParticipante(two);
     if(turno == 1){
         ctxGame.font='oblique 675 15px Arial';
         ctxGame.fillStyle = "#a3a310";
