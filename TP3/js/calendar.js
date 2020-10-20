@@ -28,15 +28,23 @@ let x = setInterval(function() {
 
 
 //    ----------------------    ANIMACION SCROLL    ------------------
+setTimeout(function(){
 
-let animado = document.querySelectorAll(".animado");    //todas las clases
-function animarEntrevistas(){
+let animado = document.querySelectorAll(".animado");    //todas las clases 
+  function animarEntrevistas(){ 
     for(let i = 0; i < animado.length; i++){    
         animado[i].style.opacity = 1;
         animado[i].classList.add("mostrarIzq");
         }
 }
-
 window.addEventListener("scroll", animarEntrevistas);
+
+
+let animadoDos = document.querySelectorAll(".animadoDos");    //todas las clases
+  for(let i = 0; i < animado.length; i++){    
+    animadoDos[i].style.opacity = 1;
+    animadoDos[i].classList.add("mostrarArriba");
+    }
+}, 3000);
 
 

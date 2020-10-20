@@ -1,43 +1,48 @@
-/* #contentLoad{
-    background-color: aquamarine;
-    height: 100%;
-    width: 100%;
-    }
-#load{
-    border: 15px solid #ccc;
-    border-top-color: #f4266a;
-    border-top-style: groove;
-    height: 100px;
-    width: 100px;
-    border-radius: 100%;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    animation: girar 1.5s linear infinite;
-}
-@keyframes girar{
-    from{transform: rotate(0deg);}
-    to{transform: rotate(360deg);}
-}
- body, html {
-    height: 100%;
-    overflow-x: hidden;
- }  */
-
-     /* .image{ 
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/portada.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}  */
 
 /* ----------------------       ESTILOS GLOBALES       ---------------------- */
+#fondo{
+    /* position: relative; */
+    /* top: 200px; */
+    /* width: 100%; */
+    /* height: 600px; */
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    visibility: visible;
+    filter:brightness(0.4);
+  }
+  #contentLoad{
+      background-color: aquamarine;
+      height: 100%;
+      width: 100%;
+      }
+  #load{
+      border: 15px solid #ccc;
+      border-top-color: #f4266a;
+      border-top-style: groove;
+      height: 100px;
+      width: 100px;
+      border-radius: 100%;
+    
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      animation: girar 1.5s linear infinite;
+  }
+  @keyframes girar{
+      from{transform: rotate(0deg);}
+      to{transform: rotate(360deg);}
+  } 
+  
+
+
 body{
     overflow-x: hidden;
     /* background-image: url("../img/fondoGaleria.jpg"); */
@@ -154,17 +159,20 @@ body{
     z-index: -1;    /*probando*/
 }
 
+.img-5{
+    background-image: url("../img/5.png");    /* estrellas */
+    animation:scroll 48s infinite ease-in-out;    
+}
 .img-4{
     background-image: url("../img/4.png");    /* estrellas */
-    animation:scroll 26s infinite ease-in-out;    
-    
+    animation:scroll 46s infinite ease-in-out;    
 }
 .img-3{
     background-image: url("../img/3.png"); /* luz */
-    animation:scroll 30s infinite ease-in-out;
+    animation:scroll 50s infinite ease-in-out;
 }
 .img-2{
-    background-image: url("../img/2.png"); /* parte  de la estrella  */
+    background-image: url("../img/2.png"); /* cuerda  */
     animation:scroll 22s infinite linear;
 }
 .img-1{
@@ -511,13 +519,32 @@ border-bottom: 2px solid black;
     opacity: 0;
     transition: all 3s;
 }
+.animadoIzq{
+    opacity: 0;
+    transition: all 2s;
+}
+.animadoDer{
+    opacity: 0;
+    transition: all 2s;
+}
 .mostrarIzq{
     animation: mostrarIzq 3s;
+}
+.mostrarDer{
+    animation: mostrarDer 3s;
 }
 
 @keyframes mostrarIzq{
     0% {
         transform: translateX(-200px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes mostrarDer{
+    0% {
+        transform: translateX(200px);
     }
     100% {
         transform: translateX(0);
@@ -756,6 +783,9 @@ margin-bottom: 50;
 
 
 /* TOOLS */
+.jum{
+    background-color: gray;
+}
 .titulo-wh{
     color: white;
     font-size: 60px;

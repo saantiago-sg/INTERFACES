@@ -47,6 +47,9 @@
 // }
 
 
+
+
+
 //    -----------------------     CONTADOR    ----------------------------
 
 let countDownDate = new Date("Dec 4, 2020 21:00:00").getTime();
@@ -93,9 +96,46 @@ window.addEventListener("scroll", scrollParallax);
 //    ----------------------    ANIMACION SCROLL    ------------------
 
 let animado = document.querySelectorAll(".animado");    //todas las clases
-window.onload = function(){
+setTimeout(function(){
+  
     for(let i = 0; i < animado.length; i++){    
         animado[i].style.opacity = 1;
         animado[i].classList.add("mostrarArriba");
         }
-}
+
+
+function animarIzq(){
+let animadoIzq = document.querySelectorAll(".animadoIzq");    //todas las clases
+
+let scrollTop = document.documentElement.scrollTop;
+
+for(let i = 0; i < animadoIzq.length; i++){    
+  let alturaAnimado = animadoIzq[i].offsetTop;    //detecto altura hacia la card
+  if(alturaAnimado + 100 < scrollTop){
+        animadoIzq[i].style.opacity = 1;
+        animadoIzq[i].classList.add("mostrarIzq");
+        }
+      }   
+  }
+  window.addEventListener("scroll", animarIzq);
+
+
+
+  function animarDer(){
+    let animadoDer = document.querySelectorAll(".animadoDer");    //todas las clases
+    
+    let scrollTop = document.documentElement.scrollTop;
+    
+    for(let i = 0; i < animadoDer.length; i++){    
+      let alturaAnimado = animadoDer[i].offsetTop;    //detecto altura hacia la card
+      if(alturaAnimado + 100 < scrollTop){
+            animadoDer[i].style.opacity = 1;
+            animadoDer[i].classList.add("mostrarDer");
+            }
+          }   
+      }
+  window.addEventListener("scroll", animarDer);
+
+
+}, 3000);
+

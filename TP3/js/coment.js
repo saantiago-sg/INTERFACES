@@ -1,12 +1,13 @@
 //    ----------------------    ANIMACION SCROLL    ------------------
 
 let animado = document.querySelectorAll(".animado");    //todas las clases
-window.onload = function(){
-    for(let i = 0; i < animado.length; i++){    
-        animado[i].style.opacity = 1;
-        animado[i].classList.add("mostrarArriba");
-        }
-}
+setTimeout(function(){
+  for(let i = 0; i < animado.length; i++){    
+    animado[i].style.opacity = 1;
+    animado[i].classList.add("mostrarArriba");
+    }
+}, 3000);
+
 
 
 //      ---------------------   BOTON LOAD      ----------------
