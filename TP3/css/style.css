@@ -1,0 +1,803 @@
+/* #contentLoad{
+    background-color: aquamarine;
+    height: 100%;
+    width: 100%;
+    }
+#load{
+    border: 15px solid #ccc;
+    border-top-color: #f4266a;
+    border-top-style: groove;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: girar 1.5s linear infinite;
+}
+@keyframes girar{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+ body, html {
+    height: 100%;
+    overflow-x: hidden;
+ }  */
+
+     /* .image{ 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/portada.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}  */
+
+/* ----------------------       ESTILOS GLOBALES       ---------------------- */
+body{
+    overflow-x: hidden;
+    /* background-image: url("../img/fondoGaleria.jpg"); */
+}
+.bg-body{
+    /* background-color: #111; */
+    background-color: black;
+}
+.text{
+    text-align: center;
+    position: absolute;
+    top: 400px;
+    right: 0;
+    transform: translate(-50%, -50%);
+    color: white;  
+}
+
+.caja{
+    height: 150px;
+    width: 100%;
+    background-color: rgb(39, 38, 38);
+}
+/*  -------------------     NAVEGADOR       ---------- */
+
+  .menu input[type="checkbox"], .menu .barras, .menu .veces {
+    position: absolute;  
+    /* box-sizing: border-box; */
+
+    background-image: url("../img/hamburguesa.png");
+    margin-right: 1%;
+    margin-top: 10px;
+    right: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;  
+  }
+   
+  .menu .barras, .menu .veces {
+    font-size: 48px;
+    pointer-events: none;
+  }
+   
+  .menu input[type="checkbox"] {
+    opacity: 0; 
+  }
+   
+  .menu {
+    color: white;
+    position: relative; 
+    background: black;
+    min-height: 50px;
+  }
+  .menu nav {
+    display: none;
+    height: 280px;
+  }
+   
+  .menu input:checked ~ nav {
+    display: block;
+  }
+   
+  /* .menu input:checked ~ .barras {
+    display: none;
+  } */
+   
+  /* .menu input:not(:checked) ~ .veces {
+    display: none;
+  }
+  */
+/* FIN DE NAVEGADOR */
+
+.btns{
+    text-align: center;
+    color: white;
+    font-family: Sharpgroteskbook25, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+.btns:hover{
+    text-decoration: none;
+    color: red;
+    transition: 2s;
+ } 
+ /* FOOTER */
+.footer{
+    /* background-color: #011852; */
+    background-color: black;
+    height: 100%;
+    margin-bottom: auto;
+    width: 100%;
+}
+/* FIN FOOTER */
+
+
+/* ------------------------      FIN DE ESTILOS GLOBALES     ---------------------- */
+
+
+ /* ------------------------        HOME        -------------------------------- */
+
+ /* PARRALAX */
+ @keyframes scroll{
+    0% {background-position-x: 0px;}
+    100% {background-position-x: -1280px;}
+}
+.capas{
+    min-height: 575px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: repeat-x;
+    background-size: cover;
+    z-index: -1;    /*probando*/
+}
+
+.img-4{
+    background-image: url("../img/4.png");    /* estrellas */
+    animation:scroll 26s infinite ease-in-out;    
+    
+}
+.img-3{
+    background-image: url("../img/3.png"); /* luz */
+    animation:scroll 30s infinite ease-in-out;
+}
+.img-2{
+    background-image: url("../img/2.png"); /* parte  de la estrella  */
+    animation:scroll 22s infinite linear;
+}
+.img-1{
+    background-image: url("../img/1.png"); /* cueva arriva*/
+    animation: scroll 22s infinite linear;
+}
+
+.contenedor{
+    position: relative;
+    width: 100%;
+    top: 575px;
+}
+
+/* EFECTO PARALLAX EN TITULO */
+.animado{
+    opacity: 0;
+    transition: all 3s;
+}
+.mostrarArriba{
+    animation: mostrarArriba 2s;
+}
+
+@keyframes mostrarArriba{
+    0% {
+        transform: translateY(-200px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+/* FIN EFECTO TITULO*/
+
+/* CALENDARIO */
+.calendario{
+    height: 400px;
+}
+.cal{
+    text-align: center;
+    font-size: 70px;
+}
+.bg-cal{
+width: 100%;
+/* background: linear-gradient(0deg, #011852, #ff83835e); */
+background: rgb(228, 228, 228);
+}
+.card-cal{
+    width: 250px;
+    height: 180px;
+    /* background-color: rgba(197, 50, 50, 0.637); */
+    background-color: rgb(39, 38, 38);
+    color: white;
+    margin: 10px;
+    box-shadow: 0 15px 16px rgba(14, 14, 15, 0.753);
+}
+.card-cal:hover{
+    /* background-color: rgba(158, 40, 40, 0.637); */
+    background-color: gray;
+}
+/* FIN CALENDARIO */
+
+/* ---------- CARD DE PERSONAJES PRINCIPALES      -------- */
+.cardd{ 
+    width: 25%;
+    height: 575px;
+    transform-style: preserve-3d;
+}
+.cardd .face{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 2s ease-in-out;
+    backface-visibility: hidden;
+    transform: perspective(500px) rotateY(0deg);
+}
+.cardd:hover .face.frente{
+    transform: perspective(500px) rotateY(180deg);
+}
+
+.cardd .face.espalda{
+    color: white;
+    transform: perspective(500px) rotateY(180deg);
+}
+.cardd:hover .face.espalda{
+    transform: perspective(500px) rotateY(360deg);
+}
+
+.cardd .face figure h2{
+    position: relative;
+    top: 480px;
+    font-size: 26px;
+    text-transform: uppercase;
+    text-align: center;
+    transform: perspective(500px) translateZ(50px);
+}
+.img-1-f{
+    height: 610px;
+    width: 345px;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url("../img/ragnar2.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+    filter:brightness(0.4);
+}
+.img-1-e{
+    height: 610px;
+    width: 345px;
+    background-image:url("../img/ragnar2.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+}
+.img-2-f{
+    height: 610px;
+    width: 345px;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url("../img/bjorn4.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+    filter:brightness(0.4);
+}
+.img-2-e{
+    height: 610px;
+    width: 345px;
+    background-image:url("../img/bjorn4.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+}
+.img-3-f{
+    height: 610px;
+    width: 345px;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url("../img/ivar4.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+    filter:brightness(0.4);
+}
+.img-3-e{
+    height: 610px;
+    width: 345px;
+    background-image:url("../img/ivar4.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+}
+.img-4-f{
+    height: 610px;
+    width: 345px;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url("../img/rolo3.png");
+    background-size: cover;
+	background-repeat: no-repeat;
+    filter:brightness(0.4);
+}
+.img-4-e{
+    height: 610px;
+    width: 345px;
+    background-image:url("../img/rolo3.png");
+    background-size: cover;
+	background-repeat: no-repeat;
+}
+/* -----    FIN DE CARD DE PERSONAJES PRINCIPALES      ------- */
+
+/* -----   CARROUSEL INDEX   ------ */
+.slider{
+    /* width: 100%;
+    height: 600px;
+    overflow: hidden; */
+    /* position: absolute; */
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+.slider ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+
+    animation: cambiarImage 20s infinite alternate;
+    animation-timing-function: ease;
+}
+.slider li{
+    width: 100%;
+    list-style: none; /*borro el puntito */
+}
+@keyframes cambiarImage{
+    0% {margin-left: 0;}
+    20% {margin-left: 0;}
+
+    25% {margin-left: -100%;}
+    45% {margin-left: -100%;}
+
+    50% {margin-left: -200%;}
+    70% {margin-left: -200%;}
+
+    75% {margin-left: -300%;}
+    100% {margin-left: -300%;}
+}
+
+.contenedorParallax{
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+.efectParallax{
+    max-height: 500px;
+}
+.parallax{
+    position: absolute;
+    top: -300px;
+    background-size: cover;
+    background-repeat: repeat-x;
+    height: 100%;
+    width: 102%;
+}
+
+/*  ------- FIN DE CARROUSEL    ------- */
+
+
+/* -----------------------------       FIN HOME        -------------------------------- */
+
+
+/* -----------------------------        INICIO DE PAGINA DE CALENDARIO      ----------------------- */
+
+.acordeon input{
+    display: none;
+    
+}
+.acordeon{
+    width: 100%;
+
+}
+.acordeon_titulo{
+    /* display: block; */
+    width: 100%;
+    height: 50px;
+    /* background-color: coral; */
+    background: rgb(228, 228, 228);   
+    margin: 0;
+    /* padding: 15px; */
+    font-size: 20px;
+   border: 1px solid black;
+   border-radius: 8px 8px 8px 8px;
+}
+.acordeon_titulo:hover{
+    background-color: gray;
+}
+.acordeon_contenido{
+    height: 0;  /* oculto la altura */
+    overflow: hidden; /* oculta el texto q esta fuera del contenido */
+    margin: 0;
+    color: white;
+    transition: all 1s; /* efecto */
+}
+
+.acordeon input:checked ~ .acordeon_contenido{  /* ~ al hacer esto le digo que cuando haga click en el input, el titulo va a tener la misma funcion, es decir, si hace click en el tiutlo la marcara con tilde o chek */
+    height: auto;
+    margin: 10px 0;
+}
+/* table, tr, td{
+    border: 1px solid black;
+} */
+.efectoHover:hover{
+    /* top: 10px; */
+    /* transform: perspective(600px) translateZ(50px); */
+    transform: perspective(2000px) rotateX(0deg) rotateY(30deg) rotateZ(0deg) translateX(30px) translateY(20px) translateZ(0px);
+    box-shadow: 1px 1px 15px white;
+}
+/* -----------------------------         DE PAGINA DE CALENDARIO      ----------------------- */
+
+
+
+
+/* ------------------------------   INICIO DE PAGINA COMENTARIOS     ------------------------------ */
+
+/* ---------    PORTADA DE COMENTARIOS     ------- */
+.img_comentarios{
+    background-image:url("../img/coment2.jpg");
+    height: 400px;
+    width: 100%;
+    background-size: cover; 
+}
+
+.formulario{
+    /* background: linear-gradient(0deg, #011852, #ff83835e); */
+    background: #010d2b9a;
+    width: 50%;
+    border: 3px solid black;
+    overflow: hidden;
+}
+.formulario input{
+    width: 70%;
+    height: 35px;
+    background: wheat;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+.formulario input:hover{
+    background: rgb(240, 204, 138);
+}
+.text-dentro{
+    font-size: large;
+    font-weight: 600;
+    position: absolute;
+    color: white;
+    left: 120px;
+    top: -26px;
+}
+input:focus + .text-dentro{
+    transform: translateX(200%);
+    transition: 1s ease-in;
+    font-size: 18px;
+    font-weight: 800;
+    color: wheat;
+}
+/* email */
+.text-dentro-email{
+    font-size: large;
+    font-weight: 600;
+    position: absolute;
+    color: white;
+    left: 120px;
+    top: -26px;
+}
+input:focus + .text-dentro-email{
+    transform: translateX(310%);
+    transition: 1s ease-in;
+    font-size: 18px;
+    font-weight: 800;
+    color: wheat;
+}
+
+input:focus{
+border-bottom: 2px solid black;
+}
+.animado{
+    opacity: 0;
+    transition: all 3s;
+}
+.mostrarIzq{
+    animation: mostrarIzq 3s;
+}
+
+@keyframes mostrarIzq{
+    0% {
+        transform: translateX(-200px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.mostrarArriba{
+    animation: mostrarArriba 3s;
+}
+@keyframes mostrarArriba{
+    0% {
+        transform: translateY(-200px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* BOTON LOAD */
+.btnComentario{
+    background: linear-gradient(to left, rgb(64, 238, 21), rgb(88, 112, 89) 50%, rgb(19, 146, 3) 50%);
+    width: 140px;
+    height: 50px;
+    background-size: 300px;
+    border-radius: 10px;
+    border: none;
+    transition: background-position 4s ease;
+}
+.addEfect{   /* viene de js */
+    background-position: 140px 0;
+}
+/* ---------------  COMENTARIOS HACIA LA SERIE ------------ */
+.comentarios{
+    width: 100%;
+    height: 400px;
+    background:#021e66;
+}
+.imagenCom{
+    width: 10%;
+    height: 100px;
+    /* background: tomato; */
+}
+.textoCom{
+    width: 90%;
+    height: 100px;
+    /* background:#011852; */
+    background: #01081ae1;
+
+    color: white;
+}   
+.stars{
+    background: transparent;
+    width: 160px;
+    height: 40px;
+    position: absolute;
+    right: 150px;
+}
+.stars-1{
+    background-image: url("../img/estrella.png");
+    width: 128px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.stars-1v{
+    background-image: url("../img/estrella_v.png");
+    width: 32px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.stars-2{
+    background-image: url("../img/estrella.png");
+    width: 32px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.stars-2v{
+    background-image: url("../img/estrella_v.png");
+    width: 128px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.stars-3{
+    background-image: url("../img/estrella.png");
+    width: 160px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.stars-4{
+    background-image: url("../img/estrella.png");
+    width: 96px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.stars-4v{
+    background-image: url("../img/estrella_v.png");
+    width: 64px;
+    height: 32px;
+    background-repeat: repeat;
+}
+.btnResp{
+cursor: pointer;
+color: black;
+background-color: #ffc107;
+border-color: #ffc107;
+text-align: center;
+border-radius: .25rem;
+width: 100px;
+height: 36px;
+margin-bottom: 50;
+}
+.btnResp:hover{
+    background-color: #c09208;
+    border-color: #c09208;
+}
+
+/* ------------------------------   FIN DE PAGINA COMENTARIOS       ------------------------------- */
+
+
+
+
+/* ------------------------------   INICIO DE PAGINA GALERIA DE IMAGENES EXTRA     ------------------------------- */
+
+/* --------    GALERIA DE IMAGENES     -------- */
+.galeria{
+    width: 100%;
+    height: 100%;
+}
+.img-1-gal{
+    background-image:url("../img/1_gal.jpg");
+    background-size: cover;
+    width: 40%;
+    height: 300px;
+    border: 2px solid black;
+}
+.img-2-gal{
+    width: 20%;
+    height: 300px;
+    background-image: url("../img/2_gal.jpg");
+    background-size: cover;
+    border: 2px solid black;
+
+}
+.img-3-gal{
+    width: 40%;
+    height: 300px;
+    background-image: url("../img/3_gal.jpg");
+    border: 2px solid black;
+    background-size: cover;
+}
+
+.img-6{
+    width: 25%;
+    height: 300px;
+    background-image: url("../img/6_gal.jpg");
+    border: 2px solid black;
+    background-size: cover;
+}
+.img-7{
+    width: 25%;
+    height: 300px;
+    background-image: url("../img/7_gal.jpg");
+    border: 2px solid black;
+    background-size: cover;
+}
+.img-8{
+    width: 25%;
+    height: 300px;
+    background-image: url("../img/14_gal.jpg");
+    border: 2px solid black;
+    background-size: cover;
+}
+.img-9{
+    width: 25%;
+    height: 300px;
+    background-image: url("../img/9_gal.jpeg");
+    background-size: cover;
+    border: 2px solid black;
+}
+
+.caja-gal{
+    width: 100%;
+    height: 140px;
+    /* background-color: transparent; */
+    /* background: linear-gradient(0deg, #011852, #ff83835e); */
+    background: black;
+    color: white;
+
+}
+.text-gal{
+    font-size: 60px;
+    font-weight: 700;
+    color: white;
+}
+/* --------------------------   CARROUSEL GAL  ---------------------- */
+.slider-gal{
+    width: 100%;
+    height: 500px;
+    /* margin: auto; */
+    /* margin-left: 100px;
+    margin-right: 100px; */
+    overflow: hidden;
+}
+.slider-gal ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+
+    animation: cambiarImage 20s infinite alternate;
+    animation-timing-function: ease;
+}
+.slider-gal li{
+    width: 100%;
+    list-style: none;
+}
+@keyframes cambiarImage{
+    0% {margin-left: 0;}
+    20% {margin-left: 0;}
+
+    25% {margin-left: -100%;}
+    45% {margin-left: -100%;}
+
+    50% {margin-left: -200%;}
+    70% {margin-left: -200%;}
+
+    75% {margin-left: -300%;}
+    100% {margin-left: -300%;}
+}
+/* --------------   FIN CARROUSEL GAL --------------*/
+
+/* --------------------------       FIN DE PAGINA DE GALERIA DE IMAGENES     ------------------- */
+
+
+
+
+
+
+/* TOOLS */
+.titulo-wh{
+    color: white;
+    font-size: 60px;
+    font-weight: 700;
+}
+.bg-size{
+    background-size: cover;
+}
+.j-center{
+    justify-content: center;
+}
+.t-center{
+    text-align: center;
+}
+.red-oscu{
+color: rgb(116, 4, 4);
+}
+.red{
+    color: red;
+}
+.titulo{
+    font-size: 60px;
+    font-weight: 700;
+    color: black;
+    
+}
+.bg-wheat{
+    background-color: wheat;
+}
+.bg-wheat:hover{
+    background: rgb(240, 204, 138);
+}
+.copy{
+    font-size: large;
+    font-weight: 700;
+color: white;
+}
+li{
+    list-style: none;
+}
+.my-2{
+    background-color: white;
+    width: 30%;
+}
+/* FIN TOOLS */
