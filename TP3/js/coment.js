@@ -19,7 +19,11 @@ function load(){
   
 }
 let btnComentario = document.querySelector("#btnComent").addEventListener("click", load);
+let enviado = document.querySelector(".enviado");
 
 function cargar(){
-  location.reload();
+  enviado.style.display = "block";
+  setTimeout(function(){
+   location.reload();
+  },2000);
 }

@@ -139,8 +139,8 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    background: repeat-x;
-    background-size: cover;
+    /* background: repeat-x; */
+    /* background-size: cover; */
     z-index: -1;    /*probando*/
 }
 
@@ -153,7 +153,7 @@ body{
     animation:scroll 46s infinite ease-in-out;    
 }
 .img-3{
-    background-image: url("../img/3.png"); /* luz */
+    background-image: url("../img/3_copia.png"); /* luz */
     animation:scroll 50s infinite ease-in-out;
 }
 .img-2{
@@ -536,6 +536,11 @@ border-bottom: 2px solid black;
     }
 }
 
+.enviado{
+    justify-content: center;
+    text-align: center;
+    display: none;
+}
 
 /* -- BOTON LOAD -- */
 .btnComentario{
