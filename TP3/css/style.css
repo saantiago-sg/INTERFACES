@@ -1,10 +1,8 @@
 
 /* ----------------------       ESTILOS GLOBALES       ---------------------- */
+
+/* --   LOADING   --*/
 #fondo{
-    /* position: relative; */
-    /* top: 200px; */
-    /* width: 100%; */
-    /* height: 600px; */
     position: fixed;
     z-index: 99;
     top: 0;
@@ -22,7 +20,7 @@
       }
   #load{
       border: 15px solid #ccc;
-      border-top-color: #f4266a;
+      border-top-color: red;
       border-top-style: groove;
       height: 100px;
       width: 100px;
@@ -40,15 +38,13 @@
       from{transform: rotate(0deg);}
       to{transform: rotate(360deg);}
   } 
-  
+/* -- FIN LOADING -- */
 
 
 body{
     overflow-x: hidden;
-    /* background-image: url("../img/fondoGaleria.jpg"); */
 }
 .bg-body{
-    /* background-color: #111; */
     background-color: black;
 }
 .text{
@@ -59,18 +55,15 @@ body{
     transform: translate(-50%, -50%);
     color: white;  
 }
-
 .caja{
     height: 150px;
     width: 100%;
     background-color: rgb(39, 38, 38);
 }
-/*  -------------------     NAVEGADOR       ---------- */
 
+/*  -------------------     NAVEGADOR       ---------- */
   .menu input[type="checkbox"], .menu .barras, .menu .veces {
     position: absolute;  
-    /* box-sizing: border-box; */
-
     background-image: url("../img/hamburguesa.png");
     margin-right: 1%;
     margin-top: 10px;
@@ -103,16 +96,8 @@ body{
   .menu input:checked ~ nav {
     display: block;
   }
-   
-  /* .menu input:checked ~ .barras {
-    display: none;
-  } */
-   
-  /* .menu input:not(:checked) ~ .veces {
-    display: none;
-  }
-  */
-/* FIN DE NAVEGADOR */
+  
+/* -- FIN DE NAVEGADOR -- */
 
 .btns{
     text-align: center;
@@ -128,7 +113,6 @@ body{
  } 
  /* FOOTER */
 .footer{
-    /* background-color: #011852; */
     background-color: black;
     height: 100%;
     margin-bottom: auto;
@@ -140,7 +124,8 @@ body{
 /* ------------------------      FIN DE ESTILOS GLOBALES     ---------------------- */
 
 
- /* ------------------------        HOME        -------------------------------- */
+
+/* ------------------------        PAGINA HOME        -------------------------------- */
 
  /* PARRALAX */
  @keyframes scroll{
@@ -186,7 +171,8 @@ body{
     top: 575px;
 }
 
-/* EFECTO PARALLAX EN TITULO */
+/* -- EFECTO PARALLAX EN TITULO -- */
+
 .animado{
     opacity: 0;
     transition: all 3s;
@@ -205,7 +191,7 @@ body{
 }
 /* FIN EFECTO TITULO*/
 
-/* CALENDARIO */
+/* - CALENDARIO DEL HOME --*/
 .calendario{
     height: 400px;
 }
@@ -215,25 +201,22 @@ body{
 }
 .bg-cal{
 width: 100%;
-/* background: linear-gradient(0deg, #011852, #ff83835e); */
 background: rgb(228, 228, 228);
 }
 .card-cal{
     width: 250px;
     height: 180px;
-    /* background-color: rgba(197, 50, 50, 0.637); */
     background-color: rgb(39, 38, 38);
     color: white;
     margin: 10px;
     box-shadow: 0 15px 16px rgba(14, 14, 15, 0.753);
 }
 .card-cal:hover{
-    /* background-color: rgba(158, 40, 40, 0.637); */
     background-color: gray;
 }
-/* FIN CALENDARIO */
+/* FIN CALENDARIO DE HOME */
 
-/* ---------- CARD DE PERSONAJES PRINCIPALES      -------- */
+/* ---------- CARD DE PERSONAJES PRINCIPALES HOME     -------- */
 .cardd{ 
     width: 25%;
     height: 575px;
@@ -337,14 +320,10 @@ background: rgb(228, 228, 228);
     background-size: cover;
 	background-repeat: no-repeat;
 }
-/* -----    FIN DE CARD DE PERSONAJES PRINCIPALES      ------- */
+/* -----    FIN DE CARD DE PERSONAJES PRINCIPALES HOME   ------- */
 
-/* -----   CARROUSEL INDEX   ------ */
+/* -----   CARROUSEL HOME  ------ */
 .slider{
-    /* width: 100%;
-    height: 600px;
-    overflow: hidden; */
-    /* position: absolute; */
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -359,7 +338,7 @@ background: rgb(228, 228, 228);
 }
 .slider li{
     width: 100%;
-    list-style: none; /*borro el puntito */
+    list-style: none; 
 }
 @keyframes cambiarImage{
     0% {margin-left: 0;}
@@ -394,33 +373,30 @@ background: rgb(228, 228, 228);
     width: 102%;
 }
 
-/*  ------- FIN DE CARROUSEL    ------- */
+/*  ------- FIN DE CARROUSEL HOME ------- */
 
 
 /* -----------------------------       FIN HOME        -------------------------------- */
 
 
+
 /* -----------------------------        INICIO DE PAGINA DE CALENDARIO      ----------------------- */
 
+/* -- ACORDEON -- */
 .acordeon input{
     display: none;
-    
 }
 .acordeon{
     width: 100%;
-
 }
 .acordeon_titulo{
-    /* display: block; */
     width: 100%;
     height: 50px;
-    /* background-color: coral; */
     background: rgb(228, 228, 228);   
     margin: 0;
-    /* padding: 15px; */
     font-size: 20px;
-   border: 1px solid black;
-   border-radius: 8px 8px 8px 8px;
+    border: 1px solid black;
+    border-radius: 8px 8px 8px 8px;
 }
 .acordeon_titulo:hover{
     background-color: gray;
@@ -437,16 +413,14 @@ background: rgb(228, 228, 228);
     height: auto;
     margin: 10px 0;
 }
-/* table, tr, td{
-    border: 1px solid black;
-} */
+
 .efectoHover:hover{
-    /* top: 10px; */
-    /* transform: perspective(600px) translateZ(50px); */
+    transition: 1s;
     transform: perspective(2000px) rotateX(0deg) rotateY(30deg) rotateZ(0deg) translateX(30px) translateY(20px) translateZ(0px);
     box-shadow: 1px 1px 15px white;
 }
-/* -----------------------------         DE PAGINA DE CALENDARIO      ----------------------- */
+/* FIN ACORDEON */
+/* -----------------------------       FIN  DE PAGINA DE CALENDARIO      ----------------------- */
 
 
 
@@ -462,7 +436,6 @@ background: rgb(228, 228, 228);
 }
 
 .formulario{
-    /* background: linear-gradient(0deg, #011852, #ff83835e); */
     background: #010d2b9a;
     width: 50%;
     border: 3px solid black;
@@ -564,7 +537,7 @@ border-bottom: 2px solid black;
 }
 
 
-/* BOTON LOAD */
+/* -- BOTON LOAD -- */
 .btnComentario{
     background: linear-gradient(to left, rgb(64, 238, 21), rgb(88, 112, 89) 50%, rgb(19, 146, 3) 50%);
     width: 140px;
@@ -574,9 +547,11 @@ border-bottom: 2px solid black;
     border: none;
     transition: background-position 4s ease;
 }
+
 .addEfect{   /* viene de js */
     background-position: 140px 0;
 }
+
 /* ---------------  COMENTARIOS HACIA LA SERIE ------------ */
 .comentarios{
     width: 100%;
@@ -586,14 +561,11 @@ border-bottom: 2px solid black;
 .imagenCom{
     width: 10%;
     height: 100px;
-    /* background: tomato; */
 }
 .textoCom{
     width: 90%;
     height: 100px;
-    /* background:#011852; */
     background: #01081ae1;
-
     color: white;
 }   
 .stars{
@@ -728,8 +700,6 @@ margin-bottom: 50;
 .caja-gal{
     width: 100%;
     height: 140px;
-    /* background-color: transparent; */
-    /* background: linear-gradient(0deg, #011852, #ff83835e); */
     background: black;
     color: white;
 
@@ -739,13 +709,10 @@ margin-bottom: 50;
     font-weight: 700;
     color: white;
 }
-/* --------------------------   CARROUSEL GAL  ---------------------- */
+/* --------------------------   CARROUSEL GALERIA EXTRA  ---------------------- */
 .slider-gal{
     width: 100%;
     height: 500px;
-    /* margin: auto; */
-    /* margin-left: 100px;
-    margin-right: 100px; */
     overflow: hidden;
 }
 .slider-gal ul{
@@ -773,9 +740,9 @@ margin-bottom: 50;
     75% {margin-left: -300%;}
     100% {margin-left: -300%;}
 }
-/* --------------   FIN CARROUSEL GAL --------------*/
+/* --------------   FIN CARROUSEL GALERIA EXTRA --------------*/
 
-/* --------------------------       FIN DE PAGINA DE GALERIA DE IMAGENES     ------------------- */
+/* --------------------------       FIN DE PAGINA DE GALERIA DE IMAGENES EXTRA     ------------------- */
 
 
 
@@ -783,7 +750,7 @@ margin-bottom: 50;
 
 
 /* TOOLS */
-.jum{
+.jum{   /* bg de JUMBUTRON DE QUIENES SOMOS*/
     background-color: gray;
 }
 .titulo-wh{

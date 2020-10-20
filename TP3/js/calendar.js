@@ -12,7 +12,6 @@ let x = setInterval(function() {
   let segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
   //    imprimo por pantalla
-  // document.querySelector("#pDias") = "Dias";
   document.querySelector("#dias").innerHTML = dias;
   document.querySelector("#horas").innerHTML = horas;
   document.querySelector("#minutos").innerHTML = minutos;
