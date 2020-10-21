@@ -50,8 +50,8 @@ body{
 .text{
     text-align: center;
     position: absolute;
-    top: 400px;
-    right: 0;
+    top: 500px;
+    right: -10%;
     transform: translate(-50%, -50%);
     color: white;  
 }
@@ -802,4 +802,5 @@ li{
     background-color: white;
     width: 30%;
 }
+
 /* FIN TOOLS */
